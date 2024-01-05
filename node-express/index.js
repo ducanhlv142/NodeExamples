@@ -5,6 +5,7 @@ const hostname = 'localhost';
 const port = 3003;
 
 const app = express();
+const morgan = require('morgan');
 
 app.use((req, res, next) => {
   console.log(req.headers);
@@ -13,7 +14,8 @@ app.use((req, res, next) => {
   res.end('<html><body><h1>This is an Express Server</h1></body></html>');
 
 });
-
+app.use(morgan('dev'));
+app.use(express.static(__dirname + '/public'));
 const server = http.createServer(app);
 
 server.listen(port, hostname, () => {
