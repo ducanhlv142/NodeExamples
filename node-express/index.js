@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const hostname = 'localhost';
 const port = 3004;
-
+const dishRouter = require('./routes/dishRouter');
 
 
 
@@ -19,7 +19,8 @@ const port = 3004;
 // app.use(morgan('dev'));
 
 // app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use('/dishes', dishRouter);
 
 app.all('/dishes', (req, res, next) => {
   res.statusCode = 200;
